@@ -7,10 +7,16 @@ namespace py = pybind11;
 #include <xtensor-python/pyarray.hpp>
 #include <xtensor-python/pytensor.hpp>
 
-template <size_t RANK, template <class T, size_t N, class... Args> class X, class T, size_t N, class... Args>
-auto allocate_tensor(const std::array<size_t, RANK>& shape, X<T, N, Args...>&)
+// template <size_t RANK, template <class EC, size_t N, xt::layout_type, class> class X, class EC, size_t N, xt::layout_type L, class Tag>
+// auto allocate_tensor(const std::array<size_t, RANK>& shape, X<EC, N, L, Tag>&)
+// {
+//      return X<EC, RANK, L, Tag>(shape);
+// }
+
+template <size_t RANK, template <class EC, size_t N, xt::layout_type> class X, class EC, size_t N, xt::layout_type L>
+auto allocate_tensor(const std::array<size_t, RANK>& shape, const X<EC, N, L>&)
 {
-     return X<T, RANK, Args...>(shape);
+     return X<EC, RANK, L>(shape);
 }
 
 template <class T>
@@ -27,5 +33,5 @@ PYBIND11_MODULE(mymodule, m)
 {
     xt::import_numpy();
     m.doc() = "Module description";
-    m.def("foo", &foo, "Function description", py::arg("arg"))
+    m.def("foo", &foo<xt::pytensor<size_t, 1>>, "Function description", py::arg("arg"));
 }
