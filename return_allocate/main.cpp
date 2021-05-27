@@ -33,5 +33,8 @@ PYBIND11_MODULE(mymodule, m)
 {
     xt::import_numpy();
     m.doc() = "Module description";
-    m.def("foo", &foo<xt::pytensor<size_t, 1>>, "Function description", py::arg("arg"));
+    m.def("foo",
+          static_cast<xt::pytensor<size_t, 2> (*)(const xt::pytensor<size_t, 1>&)>(&foo),
+          "Function description",
+          py::arg("arg"));
 }
