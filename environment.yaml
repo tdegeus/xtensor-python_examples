@@ -5,5 +5,6 @@ dependencies:
   - make
   - xtensor
   - xtensor-python
+  - pybind11
   - python
   - numpy
