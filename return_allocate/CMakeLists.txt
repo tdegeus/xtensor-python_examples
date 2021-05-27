@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.1..3.19)
 
 project(mymodule)
 
-find_package(Python REQUIRED COMPONENTS NumPy)
-find_package(pybind11 CONFIG REQUIRED)
+find_package(Python REQUIRED COMPONENTS Interpreter Development NumPy)
+find_package(pybind11 REQUIRED CONFIG)
 find_package(xtensor REQUIRED)
 find_package(xtensor-python REQUIRED)
 
