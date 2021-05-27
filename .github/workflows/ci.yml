@@ -43,7 +43,7 @@ jobs:
 
     - name: Compile
       working-directory: ${{ matrix.code }}/build
-      run: cmake --build .
+      run: cmake --build . -DPython_EXECUTABLE=`which python`
 
     - name: Example
       working-directory: ${{ matrix.code }}/build
