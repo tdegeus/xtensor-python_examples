@@ -14,7 +14,7 @@ namespace py = pybind11;
 // }
 
 template <size_t RANK, template <class EC, size_t N, xt::layout_type> class X, class EC, size_t N, xt::layout_type L>
-auto allocate_tensor(const std::array<size_t, RANK>& shape, const X<EC, N, L>&)
+auto allocate_tensor(const std::array<size_t, RANK>& shape, const X<EC, N, L>&) -> X<EC, RANK, L>
 {
      return X<EC, RANK, L>::from_shape(shape);
 }
