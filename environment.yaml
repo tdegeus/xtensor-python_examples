@@ -1,0 +1,10 @@
+channels:
+  - conda-forge
+dependencies:
+  - cmake
+  - make
+  - xtensor
+  - xtensor-python
+  - pybind11
+  - python
+  - numpy
